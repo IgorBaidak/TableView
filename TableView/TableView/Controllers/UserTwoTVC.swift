@@ -1,57 +1,51 @@
 //
-//  UserListTwoTVC.swift
+//  UserTwoTVC.swift
 //  TableView
 //
-//  Created by Igor Baidak on 14.08.22.
+//  Created by Igor Baidak on 16.08.22.
 //
 
 import UIKit
 
-class UserListTwoTVC: UITableViewController {
-    
-    var userInfo = [UsersProtocol]()
+class UserTwoTVC: UITableViewController {
 
+    let user = UserData.createUser().sorted {a, b -> Bool in a.firstName < b.firstName }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        userLoad()
+
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
-
-    private func userLoad() {
-        userInfo.append(Users(firstName: "Алексей", secondName: "Навальны", email: "night-minsk@mail.ru", numberPhone: "+4322343764"))
-        userInfo.append(Users(firstName: "Сергей", secondName: "Жданов", email: "dnfjdk@mail.coijk", numberPhone: "+433254522"))
-        userInfo.append(Users(firstName: "Jon", secondName: "Carter", email: "dfnvf-minsk@mail.ru", numberPhone: "+4523523"))
-        userInfo.append(Users(firstName: "Frank", secondName: "Johi", email: "nightdscminsk@mail.ru", numberPhone: "+4352424"))
-        userInfo.append(Users(firstName: "Sergio", secondName: "Cooper", email: "night-gadd@mail.ru", numberPhone: "+452432454"))
-        userInfo.append(Users(firstName: "Oman", secondName: "Grek", email: "fdvdfbv-minsk@mail.ru", numberPhone: "+43989898"))
-        userInfo.append(Users(firstName: "Julia", secondName: "Hide", email: "nfvbdjkgvbnsk@mail.ru", numberPhone: "+43534433"))
-        userInfo.append(Users(firstName: "Alex", secondName: "Jdssewe", email: "nfdgvfvsk@mail.ru", numberPhone: "+4578287423"))
-        userInfo.append(Users(firstName: "Alina", secondName: "Solo", email: "nigfbgdnsk@mail.ru", numberPhone: "+232322899"))
-        userInfo.append(Users(firstName: "Jimy", secondName: "Jol", email: "nfgvdfbdfnsk@mail.ru", numberPhone: "+3234298974"))
-    }
     
+    // Использование метода для присваивания заголовка секции
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let users = user[section]
+        return users.firstName + " " + users.secondName
+    }
+
     // MARK: - Table view data source
 
+    // MARK: Задаем количество секций
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return user.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        let section = tableView.dataSourceSectionIndex(forPresentationSectionIndex: userInfo.endIndex)
-        return section
+        return 2
     }
 
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCell(withIdentifier: "CellTwo", for: indexPath)
-        cell = UITableViewCell(style: .subtitle, reuseIdentifier: "CellTwo")
-        cell.textLabel?.text = userInfo[indexPath.row].firstName + " " + userInfo[indexPath.row].secondName
-        cell.detailTextLabel?.text = userInfo[indexPath.row].email + " " + userInfo[indexPath.row].numberPhone
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CellTwo", for: indexPath)
+        let users = user[indexPath.section]
+        cell.textLabel?.text = indexPath.row == 0 ? users.email : users.numberPhone
         return cell
     }
     

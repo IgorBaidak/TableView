@@ -2,22 +2,35 @@
 //  Users.swift
 //  TableView
 //
-//  Created by Igor Baidak on 14.08.22.
+//  Created by Igor Baidak on 16.08.22.
 //
 
 import Foundation
 
-
-//class Users: UsersProtocol {
-//    static var firstName = [ "Алексей", "Игорь", "Александр", "Сергей", "John", "Mike", "Stewart", "Michel", "Sara", "Alina" ]
-//    static var secondName = [ "Навальны", "Байдак", "Стрельцов", "Сизый", "Newmart", "Lesly", "Edwards", "O'bama", "Conor", "Solovieva"]
-//    static var email = [ "night-minsk@mail.ru", "igoraidak@gmail.com", "alinasolo@mail.ru", "qwertt@mail.com", "fkjgnf@gmail.com", "sdni43fd@mail.ru", "dsivsdh@yahoo.com", "cdsfbuw@mail.ru", "djbfiw@mail.by", "cdnfiwejdw@mail.ru"]
-//    static var numberPhone = [ "+37534242423", "+3753232942", "+3754458422932", "+232713423423", "+332234324823", "+234232394932", "+43429292343", "+342348298", "+38423230948", "+457282382234"]
-//}
-
-struct Users: UsersProtocol {
+struct Users {
     var firstName: String
     var secondName: String
     var email: String
     var numberPhone: String
+}
+
+
+struct UserData {
+    static func createUser() -> [Users] {
+        var user: [Users] = []
+        // перемешиваем и записываем
+        let firstNames = UserStorage.firstName.shuffled()
+        let secondNames = UserStorage.secondName.shuffled()
+        let email = UserStorage.email.shuffled()
+        let numberPhone = UserStorage.numberPhone.shuffled()
+
+        for index in 0 ..< firstNames.count {
+            let person = Users(firstName: firstNames[index],
+                               secondName: secondNames[index],
+                               email: email[index],
+                               numberPhone: numberPhone[index])
+            user.append(person)
+        }
+        return user
+    }
 }
