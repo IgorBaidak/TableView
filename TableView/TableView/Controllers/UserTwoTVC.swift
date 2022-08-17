@@ -8,7 +8,9 @@
 import UIKit
 
 class UserTwoTVC: UITableViewController {
-
+    
+    // MARK: Создаем массив отсортированных по имени людей
+    
     let user = UserData.createUser().sorted {a, b -> Bool in a.firstName < b.firstName }
     
     override func viewDidLoad() {

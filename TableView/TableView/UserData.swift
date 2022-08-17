@@ -9,13 +9,13 @@ import Foundation
 
 
 struct UserStorage {
-    static var firstName = ["Name1", "Name2", "Name3", "Name4",
-                        "Name5", "Name6", "Name7",
-                        "Name8", "Name9"]
+    static var firstName = ["Alex", "James", "Alina", "Nick",
+                        "Suzy", "Obi", "Carter",
+                        "Naomi", "Sara"]
 
-    static var secondName = ["Surname1", "Surname2", "Surname3", "Surname4",
-                           "Surname5", "Surname6", "Surname7", "Surname8",
-                           "Surname9", "Surname10"]
+    static var secondName = ["Koly", "Garti", "Fabi", "Dauni",
+                           "Persi", "Houck", "Gigi", "Daru",
+                           "Survi", "Haeli"]
 
     static var email = ["jjjj@gmail.com", "aaaa@gmail.com", "eeee@gmail.com",
                          "hhhh@gmail.com", "wwww@gmail.com", "mmmm@gmail.com",

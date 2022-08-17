@@ -14,6 +14,13 @@ class DetailVC: UIViewController {
     @IBOutlet weak var phoneLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
     
+
+    @IBOutlet weak var phone: UILabel! { didSet { phone.text = phoneUnicode }}
+    @IBOutlet weak var email: UILabel! { didSet { email.text = emailUnicode }}
+    
+    private let phoneUnicode = "\u{1F4F1}"
+    private let emailUnicode = "\u{40}"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         userDetail()
